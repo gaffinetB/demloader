@@ -73,13 +73,12 @@ The same examples as before are shown in command line form below:
 
 **Example use given an expiclite AOI:**
 ```cmd
-python -m demloader_cli -aoi 32.24734393560411 34.52563993529248 34.62223422263325 35.719472334824665 --res 30 --out data/cyprus.tif
+python -m demloader_cli -aoi 32.24734393560411 34.52563993529248 34.62223422263325 35.719472334824665 
+                        --res 30 --out data/cyprus.tif
 ```
 
 **Example use given a reference raster:**
 
 ```cmd
-python -m demloader_cli --raster data/example.tif 
-                        --res 30 
-                        --out data/example_output_dem.tif
+python -m demloader_cli --raster data/example.tif --res 30 --out data/example_output_dem.tif
 ```
