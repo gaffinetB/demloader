@@ -40,7 +40,8 @@ prefixes = dl.prefixes.get_from_aoi(aoi, resolution)
 dl.download.from_aws(prefixes, resolution, output_path)
 ```
 
-![Resulting data from running the code above. Visualization done in QGIS.](images/cyprus_example_240dpi.png)
+Resulting data from running the code above. Visualization done in QGIS:
+![](images/cyprus_example_240dpi.png)
 
 
 **Example use given a reference raster:**
