@@ -21,9 +21,7 @@ All dependencies will be automatically installed when installing `demloader` via
 
 `pip install demloader`
 
-## Intended Use
-
-### As Python Library
+## Intended Use (as Python Library)
 
 The library can be used by either providing an explicit AOI (Area of Interest) in WGS84 coordinates or by providing a raster from which the extent can be extracted.
 
@@ -58,7 +56,7 @@ prefixes dl.prfixes.get_from_raster(reference_raster_path, resolution)
 dl.download.from_aws(prefixes, resolution, output_path)
 ```
 
-### Via Command Line
+## Intended Use (as Command Line)
 
 After installation you can use the code via command line. First navigate to the folder containing `demloader_cli.py` and the `demloader` folder. 
 
