@@ -33,7 +33,7 @@ Both examples below use an example AOI covering the island of Cyprus.
 import demloader as dl
 
 aoi = [32.24734393560411, 34.52563993529248, 34.62223422263325, 35.719472334824665] # Set by user
-resolution = 30 # Set by user, 30m and 90m available
+resolution = 30                     # Set by user, 30m and 90m available
 output_path = 'data/cyprus_dem.tif' # Optional, default is 'demloader_dem.tif'
 
 prefixes = dl.prefixes.get_from_aoi(aoi, resolution)
@@ -48,8 +48,8 @@ dl.download.from_aws(prefixes, resolution, output_path)
 ```Python
 import demloader as dl
 
-reference_raster_path = 'data/example.tif' # Set by user, any projection works
-resolution = 30 # Set by user, 30m and 90m available
+reference_raster_path = 'data/example.tif'  # Set by user, any projection works
+resolution = 30                             # Set by user, 30m and 90m available
 output_path = 'data/example_output_dem.tif' # Optional, default is 'demloader_dem.tif'
 
 prefixes dl.prfixes.get_from_raster(reference_raster_path, resolution)
