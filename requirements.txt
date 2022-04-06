@@ -1,0 +1,5 @@
+gdal
+rasterio
+boto3
+botocore
+pyproj

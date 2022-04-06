@@ -1,5 +1,6 @@
 import argparse
-import module
+import demloader.download as download
+import demloader.prefixes as prefixes
 
 
 parser = argparse.ArgumentParser(description='Download DEM for given AOI or raster')
@@ -18,19 +19,17 @@ print(args['aoi'])
 
 if args['raster'] is not None:
     if args['resolution'] is not None:
-        prefixes = module.get_prefixes_from_raster(args['raster'], args['resolution'])
+        prefixes = prefixes.get_from_raster(args['raster'], args['resolution'])
     else:
-        prefixes = module.get_prefixes_from_raster(args['raster'])
+        prefixes = prefixes.get_from_raster(args['raster'])
 
 else:
     if args['resolution'] is not None:
-        prefixes = module.get_prefixes_from_aoi(args['aoi'], args['resolution'])
+        prefixes = prefixes.get_from_aoi(args['aoi'], args['resolution'])
     else:
-        prefixes = module.get_prefixes_from_aoi(args['aoi'])
-
-print(prefixes)
+        prefixes = prefixes.get_from_aoi(args['aoi'])
 
 if args['resolution'] is not None:
-    module.download_from_aws(prefixes, args['outpath'], args['resolution'])
+    download.from_aws(prefixes, args['outpath'], args['resolution'])
 else:
-    module.download_from_aws(prefixes, args['outpath'])
+    download.from_aws(prefixes, args['outpath'])
