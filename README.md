@@ -34,7 +34,7 @@ Both examples below use an example AOI covering the island of Cyprus.
 ```Python
 import demloader as dl
 
-aoi = [32.24734393560411, 34.52563993529248, 34.62223422263325, 35.719472334824665] # Set by user, can be taken from Google Maps
+aoi = [32.24734393560411, 34.52563993529248, 34.62223422263325, 35.719472334824665] # Set by user
 resolution = 30 # Set by user, 30m and 90m available
 output_path = 'data/cyprus_dem.tif' # Optional, default is 'demloader_dem.tif'
 
@@ -79,5 +79,7 @@ python -m demloader_cli -aoi 32.24734393560411 34.52563993529248 34.622234222633
 **Example use given a reference raster:**
 
 ```cmd
-python -m demloader_cli --raster data/example.tif --res 30 --out data/example_output_dem.tif
+python -m demloader_cli --raster data/example.tif 
+                        --res 30 
+                        --out data/example_output_dem.tif
 ```
