@@ -23,14 +23,9 @@ All dependencies will be automatically installed when installing `demloader` via
 
 ## Intended Use
 
-### Via Command Line
-
-
 ### As Python Library
 
-
 The library can be used by either providing an explicit AOI (Area of Interest) in WGS84 coordinates or by providing a raster from which the extent can be extracted.
-
 
 Both examples below use an example AOI covering the island of Cyprus.
 
@@ -47,6 +42,9 @@ prefixes = dl.prefixes.get_from_aoi(aoi, resolution)
 dl.download.from_aws(prefixes, resolution, output_path)
 ```
 
+![Resulting data from running the code above. Visualization done in QGIS.](images\cyprus_example_240dpi.png)
+
+
 **Example use given a reference raster:**
 
 ```Python
@@ -58,4 +56,28 @@ output_path = 'data/example_output_dem.tif' # Optional, default is 'demloader_de
 
 prefixes dl.prfixes.get_from_raster(reference_raster_path, resolution)
 dl.download.from_aws(prefixes, resolution, output_path)
+```
+
+### Via Command Line
+
+After installation you can use the code via command line. First navigate to the folder containing `demloader_cli.py` and the `demloader` folder. 
+
+```cmd
+python -m demloader_cli [-h] [-aoi AOI AOI AOI AOI] [--res RESOLUTION]
+                        [--raster RASTER] [--out OUTPATH]
+```
+
+For details about proper usage type `python -m demloader_cli --help`
+
+The same examples as before are shown in command line form below:
+
+**Example use given an expiclite AOI:**
+```cmd
+python -m demloader_cli -aoi 32.24734393560411 34.52563993529248 34.62223422263325 35.719472334824665 --res 30 --out data/cyprus.tif
+```
+
+**Example use given a reference raster:**
+
+```cmd
+python -m demloader_cli --raster data/example.tif --res 30 --out data/example_output_dem.tif
 ```
