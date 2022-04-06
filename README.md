@@ -1,4 +1,4 @@
-# A simplistic DEM Downloader: demloader
+# A simplistic global DEM Downloader: demloader
 
 This package is a single purpose downloader for global Copernicus Digital Elevation Models.
 The data is stored on AWS open data portal, for full information about the data product follow this link https://registry.opendata.aws/copernicus-dem/
