@@ -5,6 +5,17 @@ from osgeo import gdal
 import boto3
 
 def from_aws(prefixes, resolution, out_path='demloader_dem.tif'):
+    """
+    Download DEM corresponding to provided prefixes and save at provided path.
+
+    Parameters:
+    -----------
+        prefixes (list):    Prefixes corresponding to the DEM to be downloaded.
+                            Run functions from prefixes module to get them.
+        resolution (int):   Resolution of DEM is either 30 or 90 (in meters)
+        out_path (str):     Destination path for DEM raster to be saved at.
+                            (Default: "demloader_dem.tif")
+    """
     
     out_path = Path(out_path)
     temp_dir = out_path.parent/'temp'
@@ -19,13 +30,9 @@ def from_aws(prefixes, resolution, out_path='demloader_dem.tif'):
     print(f"{len(prefixes)} DEM patches found for AOI. Ready for Download.")
     
     for prefix in prefixes:
-        objects = aws_bucket.objects.filter(Prefix=prefix)
-
-        if len(list(objects.all())) > 0:
-            for obj in objects:
-                object_path = temp_dir/f"{prefix}.tif"
-                aws_bucket.download_file(obj.key, str(object_path))
-                downloaded.append(str(object_path))
+        object_path = str(temp_dir/f"{prefix}.tif")
+        aws_bucket.download_file(f"{prefix}/{prefix}.tif", object_path)
+        downloaded.append(str(object_path))
 
     if len(downloaded) >= 1:
         gdal.BuildVRT(str(vrt_path), downloaded, options=gdal.BuildVRTOptions())
