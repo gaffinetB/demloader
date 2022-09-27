@@ -2,7 +2,7 @@ from pathlib import Path
 from botocore import UNSIGNED
 from botocore.config import Config
 from osgeo import gdal
-from logger import logger
+from demloader.logger import logger
 import boto3
 
 def from_aws(prefixes, resolution, out_path='demloader_dem.tif'):
@@ -36,7 +36,7 @@ def from_aws(prefixes, resolution, out_path='demloader_dem.tif'):
             aws_bucket.download_file(f"{prefix}/{prefix}.tif", object_path)
             downloaded.append(str(object_path))
         except:
-            logger.exception(f'Error when downloading prefix {prefix}')
+            logger.error(f'Error when downloading prefix {prefix}. Download skipped.')
 
     if len(downloaded) >= 1:
         gdal.BuildVRT(str(vrt_path), downloaded, options=gdal.BuildVRTOptions())
