@@ -2,6 +2,7 @@ from pathlib import Path
 from botocore import UNSIGNED
 from botocore.config import Config
 from osgeo import gdal
+from logger import logger
 import boto3
 
 def from_aws(prefixes, resolution, out_path='demloader_dem.tif'):
@@ -30,9 +31,12 @@ def from_aws(prefixes, resolution, out_path='demloader_dem.tif'):
     print(f"{len(prefixes)} DEM patches found for AOI. Ready for Download.")
     
     for prefix in prefixes:
-        object_path = str(temp_dir/f"{prefix}.tif")
-        aws_bucket.download_file(f"{prefix}/{prefix}.tif", object_path)
-        downloaded.append(str(object_path))
+        try:
+            object_path = str(temp_dir/f"{prefix}.tif")
+            aws_bucket.download_file(f"{prefix}/{prefix}.tif", object_path)
+            downloaded.append(str(object_path))
+        except:
+            logger.exception(f'Error when downloading prefix {prefix}')
 
     if len(downloaded) >= 1:
         gdal.BuildVRT(str(vrt_path), downloaded, options=gdal.BuildVRTOptions())
